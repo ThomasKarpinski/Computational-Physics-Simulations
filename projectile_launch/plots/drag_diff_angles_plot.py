@@ -35,3 +35,11 @@ ax[2].legend(loc='upper right', fontsize=10, shadow=True)
 
 plt.tight_layout()
 plt.savefig('drag_diff_angles_plot.png', dpi=300)
+
+
+best_path_and_range_1 = df1.iloc[df1[1].idxmax()]
+print(best_path_and_range_1)
+best_path_and_range_2 = df2.iloc[df2[1].idxmax()]
+print(best_path_and_range_2)
+best_path_and_range_3 = df3.iloc[df3[1].idxmax()]
+print(best_path_and_range_3)
