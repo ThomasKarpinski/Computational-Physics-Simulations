@@ -4,3 +4,176 @@ body {
     margin-bottom: 5%;
     padding: 0;
 }
+
+:root {
+    --main-bg-color: #4CAF50;
+    --hover-bg-color: #45a049;
+    --border-color: #388E3C;
+    --text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+
+    --radio-bg: #4CAF50;
+    --radio-border: #388E3C;;
+    --radio-active-bg: var(--main-bg-color);
+    --radio-active-border: var(--border-color);
+
+    --slider-active-color: var(--main-bg-color);
+    --slider-handle-color: var(--main-bg-color);
+    --slider-marks-color: #555;
+
+    --dropdown-border-focus: var(--main-bg-color);
+    --dropdown-option-hover: #E8F5E9;
+    --dropdown-text-color: #333;
+}
+
+.switch-button {
+    background-color: var(--main-bg-color);
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-color);
+    margin-top: 50px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    
+    transition: background-color 0.3s ease, 
+                border-color 0.3s ease,
+                transform 0.15s ease,
+                box-shadow 0.3s ease;
+    
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.switch-button:hover {
+    background-color: var(--hover-bg-color);
+    border-color: #2E7D32; 
+    
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 15px var(--shadow-color);
+}
+
+.switch-button:active {
+    background-color: var(--main-bg-color);
+    transform: translateY(1px); 
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+radio-buttons-custom {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.radio-buttons-custom label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 6px;
+    
+    background-color: var(--radio-bg);
+    border: 2px solid var(--radio-border);
+    color: #ffffff;
+    font-weight: 500;
+    
+    transition: all 0.2s ease;
+}
+
+.radio-buttons-custom input[type="radio"] {
+    display: none;
+}
+
+.radio-buttons-custom label:hover {
+    background-color: #0a520e;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.radio-buttons-custom input[type="radio"]:checked + label {
+    background-color: var(--radio-active-bg);
+    border-color: var(--radio-active-border);
+    color: var(--text-color);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+#various-drag-slider .rc-slider-mark-text {
+    color: var(--slider-marks-color) !important; 
+    font-weight: bold;
+}
+
+
+#various-drag-slider .rc-slider-track {
+    background-color: var(--slider-active-color) !important;
+}
+
+
+#various-drag-slider .rc-slider-handle {
+    background-color: var(--slider-handle-color) !important;
+    border-color: var(--slider-handle-color) !important;
+    box-shadow: 0 0 5px var(--shadow-color);
+}
+
+#various-drag-slider .rc-slider-handle:hover,
+#various-drag-slider .rc-slider-handle:active,
+#various-drag-slider .rc-slider-handle:focus {
+    box-shadow: 0 0 5px 3px rgba(76, 175, 80, 0.5) !important;
+}
+
+
+#close-on-select-dropdown .Select-control {
+    border-radius: 8px;
+    border-color: #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+
+#close-on-select-dropdown .Select-control.is-focused,
+#close-on-select-dropdown .Select-control:hover {
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5);
+    border-color: var(--dropdown-border-focus);
+}
+
+
+#close-on-select-dropdown .Select-menu-outer {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+#close-on-select-dropdown .Select-option {
+    color: var(--dropdown-text-color);
+    padding: 10px 15px;
+    background-color: #ffffff; 
+    transition: background-color 0.15s ease;
+}
+
+
+#close-on-select-dropdown .Select-option.is-focused {
+    background-color: var(--dropdown-option-hover);
+    color: var(--dropdown-text-color);
+}
+
+
+#close-on-select-dropdown .Select-value {
+    background-color: var(--dropdown-border-focus);
+    color: var(--text-color); 
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 3px;
+    border: 1px solid var(--border-color);
+}
+
+#close-on-select-dropdown .Select-value-icon {
+    color: var(--text-color);
+    border-right-color: rgba(255, 255, 255, 0.5);
+}
+
+#close-on-select-dropdown .Select-placeholder {
+    color: #888;
+}

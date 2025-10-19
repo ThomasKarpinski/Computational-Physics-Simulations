@@ -5,6 +5,12 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 
+DROPDOWN_MAPPING = {
+    '0': {'label': 'D=0', 'value_in_data': 11},
+    '1': {'label': 'D=0.001', 'value_in_data': 12},
+    '2': {'label': 'D=0.002', 'value_in_data': 13},
+}
+
 def register_callbacks(app, data):
     @app.callback(
     Output('no-d', 'figure'),
@@ -253,4 +259,110 @@ def register_callbacks(app, data):
             template="plotly_white"
         )
 
+        return fig
+    
+    @app.callback(
+        Output('container-angle-drag', 'children'),
+        Input('close-on-select-dropdown', 'value')
+    )
+    def update_angle_drag_data(selected_value):
+        data_by_D = {
+            "0": data[11].copy(),  # D=0.000000 (range_vs_angle)
+            "1": data[12].copy(),  # D=0.001000 (range_vs_angle)
+            "2": data[13].copy(),  # D=0.002000 (range_vs_angle)
+        }
+
+        if not selected_value:
+            return html.P("Select the resistance coefficients (D) to display the data in the table.", className="text-muted")
+
+        first_key = selected_value[0]
+        result_df = data_by_D.get(first_key)
+        first_label = DROPDOWN_MAPPING.get(first_key)['label']
+        
+        result_df.rename(columns={'range': f"Range ({first_label})"}, inplace=True)
+
+        for D_key in selected_value[1:]:
+            df_to_merge = data_by_D.get(D_key)
+            
+            new_col_name = f"Range ({DROPDOWN_MAPPING.get(D_key)['label']})"
+            df_to_merge.rename(columns={'range': new_col_name}, inplace=True)
+            
+            result_df = pd.merge(
+                result_df, 
+                df_to_merge, 
+                on='angle', # Key for linking: first column
+                how='outer'  # Using “outer” to keep all rows from both DFs
+            )
+        
+        df_display = result_df.head(51)
+        
+        tabela = dbc.Table.from_dataframe(
+            df_display, 
+            striped=True, 
+            bordered=True,
+            hover=True,
+            size='sm'
+        )
+            
+        return html.Div([
+            html.P(f"The first {len(df_display)} lines after the connection were displayed.", className="text-muted small"),
+            html.Div(
+                children=[tabela],
+                style={
+                    'height': '200px',
+                    'overflowY': 'scroll',
+                    'overflowX': 'auto',
+                    'border': '1px solid #ccc',
+                }
+            )
+        ])
+    
+    @app.callback(
+        Output('altitude-graph','figure'),
+        Input('switch-button', 'n_clicks')
+        )
+    def display_altitude_graph(n_clicks):
+        df = None
+
+        df_al35_a0 = data[14]
+        df_al45_a0 = data[15]
+        df_al35_a = data[16]
+        df_al45_a = data[17]
+
+        if df_al35_a0.empty:
+            return go.Figure().update_layout(title="No data to display (CSV files have not been loaded).")
+        
+        clicks_count = n_clicks if n_clicks is not None else 0
+
+        if clicks_count % 2 != 0:
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=df_al35_a0['x'], y=df_al35_a0['y'], name='alpha=35, a=0',
+                            line=dict(color='royalblue', width=4)))
+            fig.add_trace(go.Scatter(x=df_al45_a0['x'], y=df_al45_a0['y'], name='alpha=45, a=0',
+                            line=dict(color='firebrick', width=4)))
+            fig.add_trace(go.Scatter(x=df_al35_a['x'], y=df_al35_a['y'], name='alpha=35, a>0',
+                            line=dict(color='royalblue', width=4, dash='dash')))
+            fig.add_trace(go.Scatter(x=df_al45_a['x'], y=df_al45_a['y'], name='alpha=45, a>0',
+                            line=dict(color='firebrick', width=4, dash='dash')))
+            
+        else:
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=df_al35_a0['x'], y=df_al35_a0['y'], name='alpha=35, a=0',
+                            line=dict(color='royalblue', width=4)))
+            fig.add_trace(go.Scatter(x=df_al45_a0['x'], y=df_al45_a0['y'], name='alpha=45, a=0',
+                            line=dict(color='firebrick', width=4)))
+            
+        fig.update_layout(
+                xaxis=dict(
+                    title=dict(
+                        text='x(m)'
+                    )
+                ),
+                yaxis=dict(
+                    title=dict(
+                        text='y(m)'
+                    )
+                ),
+        )
+        
         return fig

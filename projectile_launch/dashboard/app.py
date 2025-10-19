@@ -53,9 +53,8 @@ def load_data():
         except FileNotFoundError:
             print(f"Ostrzeżenie: Nie znaleziono pliku {file_path}")
         except Exception as e:
-            # Wyświetla błędy inne niż brak pliku (np. błędy parsowania)
             print(f"BŁĄD KRYTYCZNY przy wczytywaniu {file_path}: {e}")
-            continue # Przejdź do następnego pliku
+            continue # go to the next file
 
     print(f"\n--- Zakończono wczytywanie ---")
     print(f"Łącznie wczytano {len(all_df)} DataFrames.")
@@ -92,9 +91,10 @@ app.layout = dbc.Container([
                             inline=True,
                             labelStyle={'margin-right': '25px', 'margin-left': '10px'},
                             style={'margin-bottom': '20px'}
+                            
                         ),
                     
-                    ], style={'text-align': 'center'}),
+                    ],className="radio-buttons-custom", style={'text-align': 'center'}),
                 ])
             ), width=12
         )]),
@@ -163,9 +163,22 @@ app.layout = dbc.Container([
                         {'label': '2 · 10^(-3)', 'value': '2'},
                         ],value='0', id='close-on-select-dropdown', multi=True, closeOnSelect=False, placeholder="Select Drag Value")
                                         ],style={'textAlign': 'center'}),
-                    dcc.Graph(id="angle-drag-figure")
+                    dcc.Graph(id="angle-drag-figure"),
+                    html.Div(id="container-angle-drag")
                 ], style={'textAlign': 'center'})
             ), width=12
+        )
+    ], className="text-center my-5"),
+
+    dbc.Row([
+        dbc.Col(
+            dbc.Card(
+                dbc.CardBody([
+                    html.H2("Trajectory including drag force with altitude correction"),
+                    html.Button("alpha > 0", id="switch-button", className='switch-button'),
+                    dcc.Graph(id="altitude-graph")
+                ], style={'textAlign': 'center'})
+            )
         )
     ])
 ])
