@@ -157,7 +157,7 @@ int main() {
 
     // Task 3: sweep alphas
     {
-        std::vector<double> alphas = {0.0, 0.1, 0.2, 0.5, 1.0};
+        std::vector<double> alphas = {1e-4, 0.1, 0.5, 1.95};
         for (double alpha : alphas) {
             Params p {k, m, alpha, 0.0, 0.0};
             std::ostringstream suffix;
@@ -168,49 +168,84 @@ int main() {
 
     // Task 4: driven oscillator
     {
-        const double F0 = 0.5;
-        const double t0_4 = 0.0;
-        const double tmax_4 = 200.0;
-        const int N_4 = 20000;
-        const double t_transient = tmax_4 * 0.5;
+    const double F0 = 1;
+    const double t0_4 = 0.0;
+    const double tmax_4 = 1e3;
+    const int N_4 = 20000;
+    const double t_transient = tmax_4 * 0.5;
 
-        std::vector<double> omegas;
-        const double om_min = 0.1;
-        const double om_max = 3.0;
-        const double om_step = 0.05;
-        for (double om = om_min; om <= om_max + 1e-12; om += om_step) omegas.push_back(om);
+    std::vector<double> alphas = {0.01, 0.1, 0.5, 1.0};
 
-        std::string task4_dir = "results/task4";
-        fs::create_directories(task4_dir);
-        std::string response_csv = task4_dir + "/response_curve.csv";
-        std::ofstream fresp(response_csv);
-        if (!fresp.is_open()) {
-            std::cerr << "Cannot open " << response_csv << " for writing\n";
-            return 1;
-        }
-        fresp << "omega,amplitude\n";
-        fresp << std::fixed << std::setprecision(12);
+    std::vector<double> omegas;
+    const double om_min = 0.1;
+    const double om_max = 2.0;
+    const double om_step = 0.01;
+    for (double om = om_min; om <= om_max + 1e-12; om += om_step) omegas.push_back(om);
 
-        std::vector<double> times, xs;
+    std::string task4_dir = "results/task4";
+    fs::create_directories(task4_dir);
 
-        for (double omega_ext : omegas) {
-            Params p {k, m, 0.05, F0, omega_ext};
-
-            run_simulation_collect(p, x0, v0, t0_4, tmax_4, N_4, times, xs);
-
-            double amp = estimate_steady_amplitude(times, xs, t_transient, 10);
-
-            fresp << omega_ext << "," << amp << "\n";
-            std::cout << "omega=" << std::fixed << std::setprecision(3) << omega_ext
-                      << "  -> amp=" << std::setprecision(6) << amp << "\n";
-
-            save_timeseries(task4_dir, omega_ext, times, xs);
-        }
-
-        fresp.close();
-        std::cout << "Task 4 completed. Response curve saved to " << response_csv << "\n";
+    std::string out_csv = task4_dir + "/response_all_alphas.csv";
+    std::ofstream fout(out_csv);
+    if (!fout.is_open()) {
+        std::cerr << "Cannot open " << out_csv << " for writing\n";
+        return 1;
     }
 
-    std::cout << "All tasks finished.\n";
+    fout << "omega";
+    for (double a : alphas) {
+        std::ostringstream h;
+        h << ",amp_a" << std::fixed << std::setprecision(2) << a;
+        fout << h.str();
+    }
+    fout << "\n";
+    fout << std::fixed << std::setprecision(12);
+
+    std::vector<double> times, xs;
+    std::vector<std::vector<double>> amps(alphas.size(), std::vector<double>(omegas.size(), 0.0));
+
+    for (size_t ia = 0; ia < alphas.size(); ++ia) {
+        double alpha = alphas[ia];
+        std::ostringstream adir;
+        adir << task4_dir << "/alpha_" << std::fixed << std::setprecision(2) << alpha;
+        fs::create_directories(adir.str());
+
+        for (size_t io = 0; io < omegas.size(); ++io) {
+            double omega_ext = omegas[io];
+            Params p {k, m, alpha, F0, omega_ext};
+
+            run_simulation_collect(p, x0, v0, t0_4, tmax_4, N_4, times, xs);
+            double amp = estimate_steady_amplitude(times, xs, t_transient, 10);
+            amps[ia][io] = amp;
+
+            std::ostringstream fname;
+            fname << adir.str() << "/omega_" << std::fixed << std::setprecision(3) << omega_ext << ".csv";
+            std::ofstream tf(fname.str());
+            if (tf.is_open()) {
+                tf << "t,x\n";
+                tf << std::fixed << std::setprecision(12);
+                for (size_t i = 0; i < times.size(); ++i) tf << times[i] << "," << xs[i] << "\n";
+                tf.close();
+            }
+
+            if ((io % 50) == 0) {
+                std::cout << "alpha=" << std::fixed << std::setprecision(2) << alpha
+                          << " omega=" << std::fixed << std::setprecision(3) << omega_ext
+                          << " amp=" << std::setprecision(6) << amp << "\n";
+            }
+        }
+    }
+
+    for (size_t io = 0; io < omegas.size(); ++io) {
+        fout << omegas[io];
+        for (size_t ia = 0; ia < alphas.size(); ++ia) {
+            fout << "," << amps[ia][io];
+        }
+        fout << "\n";
+    }
+
+    fout.close();
+    std::cout << "Task 4 (all alphas) completed. Combined response: " << out_csv << "\n";
+}
     return 0;
 }
