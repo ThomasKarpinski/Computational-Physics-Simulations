@@ -38,4 +38,28 @@ The simulation explores several scenarios:
 
 ---
 
+### 2. Resonance in a One-Dimensional Harmonic Oscillator
+
+This project investigates the phenomenon of resonance in a one-dimensional harmonic oscillator. The simulation is built in C++ and uses the 4th order Runge-Kutta (RK4) method to solve the differential equation of a damped, driven harmonic oscillator.
+
+The simulation covers:
+*   **Damped Oscillations:** Analyzes the system's behavior with varying damping coefficients.
+*   **Driven Oscillations:** Studies the steady-state amplitude as a function of the driving frequency to identify the resonance frequency.
+*   **Resonance Curves:** Generates response curves for different levels of damping, showing how damping affects the sharpness of the resonance peak.
+
+#### Technologies Used
+
+*   **Simulation:** C++ (using RK4 for numerical integration)
+*   **Data Analysis & Plotting:** Python with `matplotlib` and `numpy`.
+
+#### Visualizations
+
+**Oscillator's Response for Different Damping Factors**
+![Oscillator Response](./Resonance_one_dim_harmonic_oscillator/results/task3/plot3.png)
+
+**Resonance Curve - Amplitude vs. Driving Frequency**
+![Resonance Curve](./Resonance_one_dim_harmonic_oscillator/results/task4/response_all_alphas.png)
+
+---
+
 *I'll be adding more simulations and projects as I explore new topics.*
