@@ -62,4 +62,28 @@ The simulation covers:
 
 ---
 
+### 3. Symplectic Integrators and the Precession of Mercury's Orbit
+
+This project simulates the orbit of Mercury around the Sun, with a focus on the precession of its perihelion. The simulation is implemented in C++ using a symplectic integrator, which is particularly well-suited for long-term orbital mechanics simulations. The model incorporates a parameter (`alpha`) to simulate the effects of General Relativity, which are responsible for the observed precession.
+
+The simulation explores:
+*   **Orbital Trajectory:** Simulates Mercury's orbit over long periods to observe the precession.
+*   **Perihelion and Aphelion Analysis:** Identifies and analyzes the points of closest (perihelion) and farthest (aphelion) approach to the Sun.
+*   **Precession Rate:** Studies the rate of precession for different values of the relativistic correction parameter `alpha`.
+
+#### Technologies Used
+
+*   **Simulation:** C++ (using a symplectic integrator)
+*   **Data Analysis & Plotting:** Python with `matplotlib` and `numpy`.
+
+#### Visualizations
+
+**Mercury's Orbit Over 100 Periods**
+![Mercury's Orbit](./Sympletic_Integrators-precession_of_mercury_orbit/plots/task3.png)
+
+**Precession of Mercury's Perihelion**
+![Precession of Perihelion](./Sympletic_Integrators-precession_of_mercury_orbit/plots/task4.png)
+
+---
+
 *I'll be adding more simulations and projects as I explore new topics.*

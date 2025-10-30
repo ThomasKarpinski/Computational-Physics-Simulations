@@ -1,2 +1,9 @@
 projectile_launch/program
 *.zip
+../venv
+Resonance_one_dim_harmonic_oscillator/2_harmonic_oscillator_RK4.pdf
+projectile_launch/1_projectile_launch.pdf
+**/.vscode/
+Sympletic_Integrators-precession_of_mercury_orbit/3_simplectic_mercury.pdf
+*.o
+*sim
