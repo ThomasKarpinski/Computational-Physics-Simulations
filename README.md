@@ -86,4 +86,28 @@ The simulation explores:
 
 ---
 
+### 4. Simulation of Radioactive Decay
+
+This project simulates the radioactive decay of a three-isotope chain using a C++ program and visualizes the results with Python. The simulation uses an adaptive step-size control algorithm based on the trapezoid method to ensure accuracy and efficiency.
+
+The simulation covers:
+*   **Radioactive Decay Chain:** Models the decay of a parent isotope into a daughter isotope, and subsequently into a granddaughter isotope.
+*   **Adaptive Step-Size:** Implements an adaptive algorithm to adjust the step size of the numerical integration, ensuring the solution remains within a specified tolerance.
+*   **Analytical Comparison:** Compares the numerical results with the analytical solution to validate the accuracy of the simulation.
+
+#### Technologies Used
+
+*   **Simulation:** C++ (using an adaptive trapezoid method for numerical integration)
+*   **Data Analysis & Plotting:** Python with `matplotlib` and `numpy`.
+
+#### Visualizations
+
+**Radioactive Decay of a Three-Isotope Chain**
+![Radioactive Decay](./Simulation_of_radioactive_decay/plots/plot2.png)
+
+**Error Analysis of the Adaptive Step-Size Method**
+![Error Analysis](./Simulation_of_radioactive_decay/plots/plot3.png)
+
+---
+
 *I'll be adding more simulations and projects as I explore new topics.*
