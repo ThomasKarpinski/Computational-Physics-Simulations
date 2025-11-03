@@ -10,7 +10,7 @@ adaptive_solver(const std::array<double, 3>& lambda,
                 std::array<double, 3> N0,
                 double tmax,
                 double dt0 = 1e-2,
-                double TOL = 1e-6,
+                double TOL = 1e-4,
                 double S = 0.9);
 
 
