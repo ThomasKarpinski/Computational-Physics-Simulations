@@ -86,4 +86,4 @@ The output plots will be saved as `.png` files in the current directory.
 
 ## Author
 
-Tomasz Chwiej
+Tomasz Karpiński
