@@ -110,4 +110,26 @@ The simulation covers:
 
 ---
 
+---
+
+### 5. Poisson Equation Solver
+
+This project implements a numerical solution to the 2D Poisson equation using the Successive Over-Relaxation (SOR) method. It focuses on simulating electric potential within a 2D domain under various boundary conditions and charge distributions. The project explores scenarios such as all-Dirichlet and mixed boundary conditions, convergence analysis of the SOR method, and solving with non-zero charge density.
+
+#### Technologies Used
+
+*   **Simulation:** C++ (implementing the SOR method)
+*   **Data Analysis & Plotting:** Python with `matplotlib` and `numpy`.
+
+#### Visualizations
+
+**Electric Potential with Dirichlet Boundary Conditions**
+![Potential Task 1](./Poisson_equation/sec/potential_task1.png)
+
+**Convergence of SOR Method**
+![Delta vs Iteration Task 3](./Poisson_equation/sec/delta_vs_iteration_task3.png)
+
+**Electric Potential with Non-Zero Charge Density**
+![Potential Task 4a](./Poisson_equation/sec/potential_task4a.png)
+
 *I'll be adding more simulations and projects as I explore new topics.*
