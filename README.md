@@ -132,4 +132,26 @@ This project implements a numerical solution to the 2D Poisson equation using th
 **Electric Potential with Non-Zero Charge Density**
 ![Potential Task 4a](./Poisson_equation/sec/potential_task4a.png)
 
+---
+
+### 6. Heat Diffusion Simulation
+
+This project simulates 2D heat diffusion in a room using the Crank-Nicolson method, implemented in C++. A Python script controls the simulation, processes data, and visualizes results with Matplotlib. The simulation models temperature distribution within a square room, including a heater, walls, and a window, under various boundary conditions and thermal properties.
+
+#### Technologies Used
+
+*   **Simulation:** C++ (Crank-Nicolson method, Gauss-Seidel relaxation)
+*   **Data Analysis & Plotting:** Python with `matplotlib` and `numpy`.
+
+#### Visualizations
+
+**Heatmap for Task 4 (Heater with Temperature Threshold)**
+![Heatmap Task 4](./Heat_Diffusion_CN/task_4/heat_map_10000.png)
+
+**Sensor Temperature for Task 4**
+![Sensor Temperature Task 4](./Heat_Diffusion_CN/task_4/sensor_temperature.png)
+
+**Energy Balance for Task 5 (Broken Window)**
+![Energy Balance Task 5](./Heat_Diffusion_CN/task_5/energies.png)
+
 *I'll be adding more simulations and projects as I explore new topics.*
