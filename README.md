@@ -154,4 +154,30 @@ This project simulates 2D heat diffusion in a room using the Crank-Nicolson meth
 **Energy Balance for Task 5 (Broken Window)**
 ![Energy Balance Task 5](./Heat_Diffusion_CN/task_5/energies.png)
 
+---
+
+### 7. String Oscillations Simulation
+
+This project simulates the oscillations of a 1D string under various physical conditions using the Velocity Verlet numerical integration method. It solves the 1D wave equation with additional terms for damping and external forces.
+
+The simulation explores:
+*   **Boundary Conditions:** Investigates the behavior of the string with fixed and loose ends.
+*   **Wave Packet Propagation:** Simulates the movement of Gaussian wave packets along the string.
+*   **Non-Homogeneous Media:** Analyzes wave propagation through a string with varying density (impedance matching).
+*   **Spectral Decomposition:** Performs spectral analysis to understand the frequency components of the oscillations.
+*   **Resonance:** Studies mechanical resonance in the string.
+
+#### Technologies Used
+
+*   **Simulation:** C++ (using Velocity Verlet method and Finite Differences)
+*   **Data Analysis & Plotting:** Python with `matplotlib` and `numpy`.
+
+#### Visualizations
+
+**Energy Conservation Analysis**
+![Energy Conservation](./String_Oscillations_Verlet/energy_task1.png)
+
+**Resonance Analysis Panel**
+![Resonance Analysis](./String_Oscillations_Verlet/task6_full_panel.png)
+
 *I'll be adding more simulations and projects as I explore new topics.*
