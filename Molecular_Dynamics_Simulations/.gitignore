@@ -1,0 +1,22 @@
+# C++ Build Artifacts
+*.o
+*.gch
+*.d
+*.out
+a.out
+/build/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+virtualenv/
+
+# Data
+/data/output/*.log
+/data/output/*.txt
+/data/output/*.dat
+
+# IDE
+.vscode/
+.idea/

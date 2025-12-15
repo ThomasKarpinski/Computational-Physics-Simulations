@@ -1,0 +1,5 @@
+# Python dependencies for plotting and analysis
+matplotlib
+numpy
+scipy
+jupyter
