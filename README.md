@@ -180,4 +180,29 @@ The simulation explores:
 **Resonance Analysis Panel**
 ![Resonance Analysis](./String_Oscillations_Verlet/task6_full_panel.png)
 
+---
+
+### 8. Molecular Dynamics Simulations
+
+This project implements a Molecular Dynamics simulation of particles in a 2D box interacting via the Lennard-Jones potential. The core simulation is written in C++ for performance, utilizing the Velocity Verlet algorithm for time integration. Python scripts are provided for detailed analysis and visualization of the thermodynamic properties.
+
+The simulation explores:
+*   **Energy Conservation:** Verifies the stability of the integrator by monitoring energy conservation in a microcanonical ensemble.
+*   **Thermostats & Thermalization:** Implements a thermostat to control the system temperature and studies the relaxation time for different coupling strengths.
+*   **Velocity Distribution:** Compares the simulated velocity distribution against the theoretical 2D Maxwell-Boltzmann distribution.
+*   **Phase Transitions (Crystallization):** Simulates a cooling process to observe the transition from a liquid-like state to a crystalline structure.
+
+#### Technologies Used
+
+*   **Simulation:** C++ (Velocity Verlet, Lennard-Jones Potential)
+*   **Data Analysis & Plotting:** Python with `matplotlib` and `numpy`.
+
+#### Visualizations
+
+**Velocity Distribution vs Maxwell-Boltzmann**
+![Velocity Distribution](./Molecular_Dynamics_Simulations/plots/velocity_distribution.png)
+
+**Crystallization Process (Final Positions)**
+![Crystallization Positions](./Molecular_Dynamics_Simulations/plots/crystallization_positions.png)
+
 *I'll be adding more simulations and projects as I explore new topics.*
