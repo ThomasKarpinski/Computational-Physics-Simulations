@@ -4,12 +4,10 @@ This project contains C++ code for Molecular Dynamics simulations and Python scr
 
 ## Structure
 - `src/`: C++ source code for the simulation engine.
-- `data/`: Input and output data.
+- `data/`: Output data.
 - `docs/`: Project documentation.
-- `notebooks/`: Jupyter notebooks for analysis.
 - `plots/`: Python scripts for generating plots.
 - `build/`: Compiled C++ binaries.
-- `tests/`: Unit tests for the C++ code.
 
 ## Building (C++)
 To compile the C++ simulation:
